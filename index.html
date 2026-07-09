@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Optimization -->
+    <title>Adarsh Kuncham | Video Editor, Photographer & Videographer</title>
+    <meta name="description" content="Portfolio of Adarsh Kuncham, a professional Video Editor, Photographer, and Videographer with 3+ years of experience crafting cinematic visuals and storytelling." />
+    <meta name="keywords" content="Adarsh Kuncham, Video Editor, Photographer, Videographer, Content Creator, Visual Storyteller, Cinematic Editing, Color Grading, Motion Graphics, Telangana, India" />
+    <meta name="author" content="Adarsh Kuncham" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adarshkuncham.vercel.app/" />
+    <meta property="og:title" content="Adarsh Kuncham | Video Editor & Visual Storyteller" />
+    <meta property="og:description" content="3+ years of professional experience creating cinematic edits, commercial films, photography, videography, and digital storytelling." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1200&auto=format&fit=crop" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://adarshkuncham.vercel.app/" />
+    <meta property="twitter:title" content="Adarsh Kuncham | Video Editor & Visual Storyteller" />
+    <meta property="twitter:description" content="3+ years of professional experience creating cinematic edits, commercial films, photography, videography, and digital storytelling." />
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1200&auto=format&fit=crop" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org JSON-LD for local SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Adarsh Kuncham",
+        "image": "https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1200&auto=format&fit=crop",
+        "description": "Video Editor, Photographer, Videographer, Content Creator, and Visual Storyteller.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Nizamabad",
+          "addressRegion": "Telangana",
+          "addressCountry": "IN"
+        },
+        "knowsAbout": [
+          "Cinematic Video Editing",
+          "Commercial Films",
+          "Photography",
+          "Videography",
+          "Motion Graphics",
+          "Color Grading",
+          "Visual Storytelling"
+        ],
+        "jobTitle": "Professional Video Editor & Photographer"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Premium Preloader Screen -->
+    <div id="loader" class="loader">
+      <div class="loader-content">
+        <h1 class="loader-title">ADARSH KUNCHAM</h1>
+        <div class="loader-bar-container">
+          <div id="loader-bar" class="loader-bar"></div>
+        </div>
+        <p class="loader-subtitle">CRAFTING STORIES THROUGH MOTION</p>
+      </div>
+    </div>
+
+    <!-- Cinematic Grain / Noise Texture Overlay -->
+    <div class="grain-overlay"></div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      // Simple initial preloader fadeout script in case react loads slowly
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        const loaderBar = document.getElementById('loader-bar');
+        if (loaderBar) {
+          loaderBar.style.width = '100%';
+        }
+        setTimeout(() => {
+          if (loader) {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            setTimeout(() => {
+              loader.remove();
+            }, 600);
+          }
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
