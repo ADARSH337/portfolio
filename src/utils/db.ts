@@ -17,7 +17,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Photography',
     client: 'Personal Work',
     year: '2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429220/sun_1.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428758/camara_2.jpg',
     gallery_images: [
       "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429254/bike_9.jpg",
       "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429251/bike_8.jpg",
@@ -133,7 +133,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Videography',
     client: 'AK CineFrame Studio',
     year: '2025–2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/rainbow_1.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786428488/vlog.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428488/vlog.mp4',
     featured: true,
@@ -151,7 +151,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Social Media',
     client: 'Shadow Beast Gamer & Creators',
     year: '2025–2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428770/street_photo_7.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786429375/game.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429375/game.mp4',
     featured: true,
@@ -169,7 +169,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Commercial',
     client: 'Local Brands & Startups',
     year: '2025–2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429254/bike_9.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786428400/gym3.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428400/gym3.mp4',
     featured: true,
@@ -187,7 +187,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Videography',
     client: 'Self Produced',
     year: '2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786428537/trip.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428537/trip.mp4',
     featured: true,
@@ -205,7 +205,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Videography',
     client: 'Independent Film Production',
     year: '2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429244/sky_3.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786428368/shortfilmereel.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428368/shortfilmereel.mp4',
     featured: true,
@@ -223,7 +223,7 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Videography',
     client: 'HyperX Sports & Creators',
     year: '2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428764/moon_1.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786429394/cricket.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429394/cricket.mp4',
     featured: true,
@@ -289,7 +289,7 @@ const MOCK_CATEGORIES: Category[] = [
 ];
 
 // Helper to initialize LocalStorage db — bump DB_VERSION to force fresh seed
-const DB_VERSION = 'v17-iphone-showreel-and-clean-projects';
+const DB_VERSION = 'v18-accurate-preview-covers';
 const initLocalDb = () => {
   // Wipe stale seed if version has changed
   if (localStorage.getItem('ak_db_version') !== DB_VERSION) {
