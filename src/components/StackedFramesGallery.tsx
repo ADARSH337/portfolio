@@ -16,6 +16,11 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
   const triggerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeModalVideo, setActiveModalVideo] = useState<string | null>(null);
+
+  useEffect(() => {
+    setActiveModalVideo(selectedProject?.video_url || null);
+  }, [selectedProject]);
 
   // Set up cards scatter and scroll trigger shuffling
   useEffect(() => {
@@ -387,7 +392,8 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                 ) : (
                   // Direct HTML5 MP4 video
                   <video
-                    src={selectedProject.video_url}
+                    key={activeModalVideo || selectedProject.video_url}
+                    src={activeModalVideo || selectedProject.video_url}
                     controls
                     autoPlay
                     playsInline
@@ -454,33 +460,47 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
             {/* For VIDEO projects: show additional video clips */}
             {selectedProject.video_url && (() => {
               const moreVideos = [
-                { label: 'Cinematic Edit #1', src: '/videos/lv_0_20260120180138.mp4' },
-                { label: 'Cinematic Edit #2', src: '/videos/lv_0_20260126135646.mp4' },
-                { label: 'Cinematic Edit #3', src: '/videos/lv_0_20260202222732.mp4' },
-                { label: 'Short Reel #1', src: '/videos/copy_of_lv_0_20250831225800.mp4' },
-                { label: 'Short Reel #2', src: '/videos/copy_of_lv_0_20251115032832.mp4' },
-                { label: 'Short Reel #3', src: '/videos/copy_of_0926.mp4' },
-                { label: 'Clip #1', src: '/videos/lv_7356006639524121874_20260118235238.mp4' },
-                { label: 'Clip #2', src: '/videos/lv_7529031899897974069_20260119001419.mp4' },
-                { label: 'Clip #3', src: '/videos/lv_7578525938837785861_20260119000349.mp4' },
-              ].filter(v => v.src !== selectedProject.video_url);
+                { label: 'Travel Vlog Cut', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428488/vlog.mp4' },
+                { label: 'The Journey Within', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428537/trip.mp4' },
+                { label: 'Gaming Montage', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429375/game.mp4' },
+                { label: 'Fitness Commercial', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428400/gym3.mp4' },
+                { label: 'Sports Action', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429394/cricket.mp4' },
+                { label: 'Short Narrative Cut', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428368/shortfilmereel.mp4' },
+                { label: 'Visual Motion Reel', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428539/motivation.mp4' },
+                { label: 'Automotive Motion', src: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428424/bike.mp4' }
+              ].filter(v => v.src !== (activeModalVideo || selectedProject.video_url));
+
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '20px' }}>
                   <h3 style={{ fontSize: '1.25rem', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '10px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-                    More Edits
+                    More Motion Cuts & Edits (Click to Watch)
                   </h3>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
                     {moreVideos.slice(0, 6).map((clip, i) => (
                       <div
                         key={i}
+                        onClick={() => setActiveModalVideo(clip.src)}
                         style={{
                           borderRadius: '6px',
                           overflow: 'hidden',
                           aspectRatio: '16/9',
                           background: '#0a0a0a',
-                          border: '1px solid rgba(255,255,255,0.05)',
+                          border: '1px solid rgba(255,255,255,0.08)',
                           position: 'relative',
-                          cursor: 'pointer'
+                          cursor: 'pointer',
+                          transition: 'transform 0.25s ease, border-color 0.25s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-3px)';
+                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+                          const v = e.currentTarget.querySelector('video');
+                          if (v) v.play().catch(() => {});
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                          const v = e.currentTarget.querySelector('video');
+                          if (v) v.pause();
                         }}
                       >
                         <video
@@ -488,18 +508,16 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                           muted
                           playsInline
                           loop
-                          preload="none"
+                          preload="auto"
                           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                          onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()}
-                          onMouseLeave={(e) => (e.currentTarget as HTMLVideoElement).pause()}
                         />
                         <div style={{
                           position: 'absolute', bottom: 0, left: 0, right: 0,
-                          background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
+                          background: 'linear-gradient(transparent, rgba(0,0,0,0.85))',
                           padding: '12px 10px 8px',
-                          fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)'
+                          fontSize: '0.78rem', color: '#fff', fontWeight: 500
                         }}>
-                          {clip.label}
+                          ▶ {clip.label}
                         </div>
                       </div>
                     ))}

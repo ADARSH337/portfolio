@@ -145,9 +145,9 @@ const MOCK_PROJECTS: Project[] = [
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p4',
-    title: 'Shadow Beast Gaming Highlights',
-    slug: 'gaming-reels-and-shorts',
-    description: 'High-engagement gaming montage and stream highlight edits built around instant visual hooks, beat-synced motion, dynamic SFX, and 3D motion tracking for top creators.',
+    title: 'Reels & Shorts',
+    slug: 'reels-and-shorts',
+    description: 'High-engagement gaming montage and stream highlight edits built around instant visual hooks, beat-synced motion, dynamic SFX, and 3D motion tracking for Shadow Beast Gamer and creators.',
     category: 'Social Media',
     client: 'Shadow Beast Gamer & Creators',
     year: '2025–2026',
@@ -159,10 +159,28 @@ const MOCK_PROJECTS: Project[] = [
   },
 
   // ─────────────────────────────────────────────────────────────
-  // TRAVEL & NATURE — The Journey Within (Stacked Center Card)
+  // COMMERCIAL & BRAND FILMS — Brand Films (Stacked 5th Card)
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p5',
+    title: 'Brand Films',
+    slug: 'brand-films',
+    description: 'High-octane commercial promo cuts with kinetic camera moves, sound-reactive pacing, and impactful motion design crafted for maximum audience conversion.',
+    category: 'Commercial',
+    client: 'Local Brands & Startups',
+    year: '2025–2026',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429254/bike_9.jpg',
+    gallery_images: [],
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428400/gym3.mp4',
+    featured: true,
+    published: true
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // TRAVEL & NATURE — The Journey Within
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: 'p6',
     title: 'The Journey Within',
     slug: 'the-journey-within',
     description: 'A vertical cinematic travel cut capturing the serene beauty of mountain rivers, valleys, and roads. Seamless pacing and vibrant color grading create an immersive travel narrative.',
@@ -172,24 +190,6 @@ const MOCK_PROJECTS: Project[] = [
     cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg',
     gallery_images: [],
     video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428537/trip.mp4',
-    featured: true,
-    published: true
-  },
-
-  // ─────────────────────────────────────────────────────────────
-  // COMMERCIAL & FITNESS — Brand Films
-  // ─────────────────────────────────────────────────────────────
-  {
-    id: 'p6',
-    title: 'Fitness & Brand Films',
-    slug: 'brand-films',
-    description: 'High-octane commercial promo cuts with kinetic camera moves, sound-reactive pacing, and impactful motion design crafted for maximum audience conversion.',
-    category: 'Commercial',
-    client: 'Apex Fitness & Local Brands',
-    year: '2025–2026',
-    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429254/bike_9.jpg',
-    gallery_images: [],
-    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428400/gym3.mp4',
     featured: true,
     published: true
   },
@@ -241,7 +241,7 @@ const MOCK_PROFILE: ProfileSettings = {
   instagram: 'https://www.instagram.com/ak.cineframe',
   linkedin: 'https://www.linkedin.com/in/adarsh-kuncham-a32677306/',
   whatsapp: 'https://wa.me/916300427247',
-  showreel_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428533/NUMAISH_4K.mp4'
+  showreel_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429412/iphone_1.mp4'
 };
 
 const MOCK_SERVICES: ServiceItem[] = [
@@ -289,7 +289,7 @@ const MOCK_CATEGORIES: Category[] = [
 ];
 
 // Helper to initialize LocalStorage db — bump DB_VERSION to force fresh seed
-const DB_VERSION = 'v15-fixed-stacked-covers-and-zero-lag';
+const DB_VERSION = 'v17-iphone-showreel-and-clean-projects';
 const initLocalDb = () => {
   // Wipe stale seed if version has changed
   if (localStorage.getItem('ak_db_version') !== DB_VERSION) {
