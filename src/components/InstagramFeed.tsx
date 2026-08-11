@@ -69,7 +69,7 @@ export const InstagramFeed: React.FC = () => {
             Cinematic <em>Frames</em><br />& Visual Stories
           </h2>
           <p className="ig-subtitle">
-            171+ posts of cinematic frames, golden-hour captures, event films and visual storytelling straight from the lens of Adarsh Kuncham.
+            191 posts of cinematic frames, golden-hour captures, event films and visual storytelling straight from the lens of Adarsh Kuncham.
           </p>
           <a href={IG_URL} target="_blank" rel="noopener noreferrer" className="ig-follow-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -142,9 +142,9 @@ export const InstagramFeed: React.FC = () => {
 
         {/* Stats Row */}
         <div ref={statsRef} className="ig-stats-row ig-animate">
-          <div className="ig-stat"><span className="ig-stat-num">171+</span><span className="ig-stat-label">Posts</span></div>
+          <div className="ig-stat"><span className="ig-stat-num">191</span><span className="ig-stat-label">Posts</span></div>
           <div className="ig-stat-divider" />
-          <div className="ig-stat"><span className="ig-stat-num">95</span><span className="ig-stat-label">Followers</span></div>
+          <div className="ig-stat"><span className="ig-stat-num">114</span><span className="ig-stat-label">Followers</span></div>
           <div className="ig-stat-divider" />
           <div className="ig-stat"><span className="ig-stat-num">3+</span><span className="ig-stat-label">Years Active</span></div>
           <a href={IG_URL} target="_blank" rel="noopener noreferrer" className="ig-view-all">
