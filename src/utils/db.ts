@@ -686,7 +686,7 @@ const MOCK_PROFILE: ProfileSettings = {
   instagram: 'https://www.instagram.com/ak.cineframe',
   linkedin: 'https://www.linkedin.com/in/adarsh-kuncham-a32677306/',
   whatsapp: 'https://wa.me/916300427247',
-  showreel_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429412/iphone_1.mp4'
+  showreel_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/v1786429412/iphone_1.mp4'
 };
 
 const MOCK_SERVICES: ServiceItem[] = [
@@ -734,7 +734,7 @@ const MOCK_CATEGORIES: Category[] = [
 ];
 
 // Helper to initialize LocalStorage db — bump DB_VERSION to force fresh seed
-const DB_VERSION = 'v19-all-42-motion-videos-and-instagram';
+const DB_VERSION = 'v21-uncompressed-cloudinary';
 const initLocalDb = () => {
   // Wipe stale seed if version has changed
   if (localStorage.getItem('ak_db_version') !== DB_VERSION) {
