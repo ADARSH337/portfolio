@@ -1,94 +1,129 @@
 import { supabase, isMockMode } from '../supabaseClient';
-import type { Project, Testimonial, ProfileSettings, ServiceItem, Message, Category } from '../types';
+import type { Project, ProfileSettings, ServiceItem, Testimonial, Message, Category } from '../types';
 
 // ============================================================================
-// MOCK DATABASE STATE (LocalStorage backed for local exploration without keys)
+// ADARSH KUNCHAM PORTFOLIO DATABASE (CLOUDINARY CDN INTEGRATED)
 // ============================================================================
-
-const MOCK_CATEGORIES: Category[] = [
-  { id: '1', name: 'Commercial', slug: 'commercial' },
-  { id: '2', name: 'Photography', slug: 'photography' },
-  { id: '3', name: 'Videography', slug: 'videography' },
-  { id: '4', name: 'Social Media', slug: 'social-media' },
-  { id: '5', name: 'Event', slug: 'event' }
-];
 
 const MOCK_PROJECTS: Project[] = [
   // ─────────────────────────────────────────────────────────────
-  // PHOTOGRAPHY — only real photos in the gallery, no video
+  // PHOTOGRAPHY — Curated Cloudinary Photography Gallery
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p1',
     title: 'Frames & Light',
     slug: 'frames-and-light',
-    description: 'A curated selection of landscapes, portraits, street shots, and editorial compositions. Every image is a study of light, geometry, and emotional atmosphere captured through the lens.',
+    description: 'A curated selection of landscapes, portraits, street shots, and editorial compositions. Every image is a study of light, geometry, and emotional atmosphere captured through the lens of Adarsh Kuncham.',
     category: 'Photography',
     client: 'Personal Work',
     year: '2026',
-    cover_image: '/photos/img_3642.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429220/sun_1.jpg',
     gallery_images: [
-      '/photos/img_4409.jpg',
-      '/photos/img_5140.jpg',
-      '/photos/img_5136.jpg',
-      '/photos/img_5751.jpg',
-      '/photos/img_5321.jpg',
-      '/photos/img_5324.jpg',
-      '/photos/img_3642.jpg',
-      '/photos/img_4458.jpg',
-      '/photos/img_1654.jpg',
-      '/photos/img_4592.jpg',
-      '/photos/img_4931.jpg',
-      '/photos/img_3717.jpg',
-      '/photos/img_3726.jpg',
-      '/photos/img_4400.jpg',
-      '/photos/img_1513.jpg',
-      '/photos/img_4664.jpg',
-      '/photos/img_4549.jpg',
-      '/photos/img_4626.jpg',
-      '/photos/img_4599.jpg',
-      '/photos/img_2321.jpg',
-      '/photos/img_1402.jpg',
-      '/photos/img_1416.jpg',
-      '/photos/img_1506.jpg',
-      '/photos/img_2741.jpg',
-      '/photos/img_2762.jpg',
-      '/photos/85550.jpg',
-      '/photos/96800.jpg',
-      '/photos/63807.jpg',
-      '/photos/8560.jpg',
-      '/photos/img_3654.jpg',
-      '/photos/img_20260506_135026373.jpg',
-      '/photos/img_20260530_204009682.jpg',
-      '/photos/img_20260529_192432565.jpg',
-      '/photos/img_20260503_220227387.jpg',
-      '/photos/img_20260501_221216044.jpg',
-      '/photos/img_20260501_220208031.jpg',
-    ],
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429254/bike_9.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429251/bike_8.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429251/bike_7.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429250/bike_6.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429248/sky_5.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429248/street_cat_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429247/street_cat_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429243/camara.heic",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429242/sky.heic",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429240/moon_8.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429238/sun_8.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429238/moon_7.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429237/moon_6.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429236/moon_5.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429235/9346.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429234/8560.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429234/IMG20251001191157_Original.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429234/8073.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429234/street_photo_4.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429232/sun_7.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429231/sun_6.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429244/sky_1.heic",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429229/29016.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429228/9399.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429227/7348.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429226/thunder_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429226/sun_5.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429225/sun_4.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429224/96800.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429223/gaintwheel.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429221/sun_3.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429221/sun_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429220/sun_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429218/sky_20.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429217/bike_5.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429217/IMG_3717.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429217/bike_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429219/sky1.heic",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429214/thunder_3.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429213/thunder_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429213/sky_19.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429212/street_photo_3.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429211/moon_3.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429210/moon_4.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429210/moon_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429209/street.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428775/street_photo_8.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428774/street_photo_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428771/sky_18.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428771/sky_17.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428770/sky_16.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428770/street_photo_7.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428769/street_photo_6.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428769/sky_14.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428767/sky_15.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428765/street_photo_5.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428764/sky_13.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428764/moon_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428763/sky_12.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429249/sky_4.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428761/gaintwheel_3.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428761/gaintwheel_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428759/gaintwheel_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428758/camara_2.heic",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428758/sky_11.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428757/bike_3.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428757/sky_10.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428756/sky_9.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428755/sky_8.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428754/bike_4.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428753/bike_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/rainbow_1.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/sky_7.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/sky_6.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428750/rainbow_2.jpg",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429244/sky_3.heic",
+      "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429246/sky_2.heic"
+],
     video_url: '',
     featured: true,
     published: true
   },
 
   // ─────────────────────────────────────────────────────────────
-  // NUMAISH EVENT — 4K film, gallery is video stills (no extra photos)
+  // NUMAISH EVENT — 4K film
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p2',
     title: 'Numaish 4K',
     slug: 'numaish-4k',
-    description: 'A full cinematic 4K production capturing the Numaish cultural event. High-end cinematography, dynamic movement, and deliberate colour treatment deliver a premium event film.',
+    description: 'A full cinematic 4K production capturing the vibrant Numaish cultural event. Dynamic camera movement, high-energy pacing, and rich color grading bring the night festival to life.',
     category: 'Videography',
     client: 'Numaish',
     year: '2026',
-    cover_image: '/photos/85550.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429223/gaintwheel.jpg',
     gallery_images: [],
-    video_url: '/videos/numaish_4k.mp4',
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428533/NUMAISH_4K.mp4',
     featured: true,
     published: true
   },
 
   // ─────────────────────────────────────────────────────────────
-  // CINEMATIC EDITS — multiple real edited videos
+  // CINEMATIC EDITS — Short narrative & visual storytelling
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p3',
@@ -98,66 +133,70 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Videography',
     client: 'AK CineFrame Studio',
     year: '2025–2026',
-    cover_image: '/photos/8560.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/rainbow_1.jpg',
     gallery_images: [],
-    video_url: '/videos/lv_0_20260216090350.mp4',
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428488/vlog.mp4',
     featured: true,
     published: true
   },
 
   // ─────────────────────────────────────────────────────────────
-  // SOCIAL MEDIA REELS — short-form vertical content
+  // GAMING & SHORTS — High-Engagement Kinetic Edits
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p4',
-    title: 'Reels & Shorts',
-    slug: 'reels-and-shorts',
-    description: 'High-engagement short-form vertical content — Reels, Shorts, and TikToks — built around instant visual hooks, kinetic captions, and sound-reactive edits.',
+    title: 'Shadow Beast Gaming Highlights',
+    slug: 'gaming-reels-and-shorts',
+    description: 'High-engagement gaming montage and stream highlight edits built around instant visual hooks, beat-synced motion, dynamic SFX, and 3D motion tracking for top creators.',
     category: 'Social Media',
     client: 'Shadow Beast Gamer & Creators',
     year: '2025–2026',
-    cover_image: '/photos/img_1513.jpg',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428770/street_photo_7.jpg',
     gallery_images: [],
-    video_url: '/videos/copy_of_lv_0_20251128143429.mp4',
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429375/game.mp4',
     featured: true,
     published: true
   },
 
   // ─────────────────────────────────────────────────────────────
-  // COMMERCIAL — brand edits and promo cuts
+  // TRAVEL & NATURE — The Journey Within (Stacked Center Card)
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p5',
-    title: 'Brand Films',
-    slug: 'brand-films',
-    description: 'Branded commercial films and promo cuts with precise narrative structuring, sleek motion graphics, and cinematic colour. Crafted for maximum conversion and brand impact.',
-    category: 'Commercial',
-    client: 'Local Brands & Startups',
-    year: '2025',
-    cover_image: '/photos/img_4931.jpg',
+    title: 'The Journey Within',
+    slug: 'the-journey-within',
+    description: 'A vertical cinematic travel cut capturing the serene beauty of mountain rivers, valleys, and roads. Seamless pacing and vibrant color grading create an immersive travel narrative.',
+    category: 'Videography',
+    client: 'Self Produced',
+    year: '2026',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg',
     gallery_images: [],
-    video_url: '/videos/copy_of_0925.mp4',
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428537/trip.mp4',
     featured: true,
     published: true
   },
 
   // ─────────────────────────────────────────────────────────────
-  // NEW VIDEOS
+  // COMMERCIAL & FITNESS — Brand Films
   // ─────────────────────────────────────────────────────────────
   {
     id: 'p6',
-    title: 'The Journey Within',
-    slug: 'the-journey-within',
-    description: 'A vertical cinematic travel cut capturing the serene beauty of mountain rivers and green valleys. Seamless pacing and vibrant color grading create an immersive travel narrative.',
-    category: 'Videography',
-    client: 'Self Produced',
-    year: '2026',
-    cover_image: '/photos/video1_poster.png',
+    title: 'Fitness & Brand Films',
+    slug: 'brand-films',
+    description: 'High-octane commercial promo cuts with kinetic camera moves, sound-reactive pacing, and impactful motion design crafted for maximum audience conversion.',
+    category: 'Commercial',
+    client: 'Apex Fitness & Local Brands',
+    year: '2025–2026',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429254/bike_9.jpg',
     gallery_images: [],
-    video_url: '/videos/0e7555da-bc57-419d-94b1-22430148792f.mp4',
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428400/gym3.mp4',
     featured: true,
     published: true
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // NARRATIVE & SHORT FILMS — The Archivist
+  // ─────────────────────────────────────────────────────────────
   {
     id: 'p7',
     title: 'The Archivist',
@@ -166,9 +205,27 @@ const MOCK_PROJECTS: Project[] = [
     category: 'Videography',
     client: 'Independent Film Production',
     year: '2026',
-    cover_image: '/photos/video2_poster.png',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429244/sky_3.jpg',
     gallery_images: [],
-    video_url: '/videos/7fd0d1b4-073f-45cc-ae83-07241812963b.mp4',
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428368/shortfilmereel.mp4',
+    featured: true,
+    published: true
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // SPORTS & ACTION — High-Energy Cuts
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: 'p8',
+    title: 'Match Point — Sports Cut',
+    slug: 'sports-action-cut',
+    description: 'High-speed sports and athletic motion edit featuring speed-ramping, kinetic zoom-ins, and impact sound design.',
+    category: 'Videography',
+    client: 'HyperX Sports & Creators',
+    year: '2026',
+    cover_image: 'https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428764/moon_1.jpg',
+    gallery_images: [],
+    video_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429394/cricket.mp4',
     featured: true,
     published: true
   }
@@ -184,10 +241,8 @@ const MOCK_PROFILE: ProfileSettings = {
   instagram: 'https://www.instagram.com/ak.cineframe',
   linkedin: 'https://www.linkedin.com/in/adarsh-kuncham-a32677306/',
   whatsapp: 'https://wa.me/916300427247',
-  showreel_url: '/videos/lv_0_20260208162105.mp4'
+  showreel_url: 'https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428533/NUMAISH_4K.mp4'
 };
-
-
 
 const MOCK_SERVICES: ServiceItem[] = [
   { title: 'Video Editing', desc: 'Cinematic visual pacing, seamless transitions, and narrative structuring.' },
@@ -225,8 +280,16 @@ const MOCK_TESTIMONIALS: Testimonial[] = [
   }
 ];
 
+const MOCK_CATEGORIES: Category[] = [
+  { id: 'c1', name: 'Commercial', slug: 'commercial' },
+  { id: 'c2', name: 'Photography', slug: 'photography' },
+  { id: 'c3', name: 'Videography', slug: 'videography' },
+  { id: 'c4', name: 'Social Media', slug: 'social-media' },
+  { id: 'c5', name: 'Event', slug: 'event' }
+];
+
 // Helper to initialize LocalStorage db — bump DB_VERSION to force fresh seed
-const DB_VERSION = 'v10-linkedin-update';
+const DB_VERSION = 'v15-fixed-stacked-covers-and-zero-lag';
 const initLocalDb = () => {
   // Wipe stale seed if version has changed
   if (localStorage.getItem('ak_db_version') !== DB_VERSION) {
@@ -256,37 +319,27 @@ const initLocalDb = () => {
   }
 };
 
-if (typeof window !== 'undefined') {
-  initLocalDb();
-}
-
-// ============================================================================
-// PUBLIC API MODULE
-// ============================================================================
-
 export const db = {
   // --- PROJECTS ---
-  async getProjects(onlyPublished = false): Promise<Project[]> {
+  async getProjects(): Promise<Project[]> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_projects') || '[]');
-      return onlyPublished ? items.filter((p: Project) => p.published) : items;
+      return JSON.parse(localStorage.getItem('ak_projects') || '[]');
     }
-    
-    let query = supabase.from('projects').select('*').order('created_at', { ascending: false });
-    if (onlyPublished) {
-      query = query.eq('published', true);
-    }
-    const { data, error } = await query;
-    if (error) throw error;
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) return MOCK_PROJECTS;
     return data || [];
   },
 
-  async getProject(slug: string): Promise<Project | null> {
+  async getProjectBySlug(slug: string): Promise<Project | null> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_projects') || '[]');
-      return items.find((p: Project) => p.slug === slug) || null;
+      const items: Project[] = JSON.parse(localStorage.getItem('ak_projects') || '[]');
+      return items.find((p) => p.slug === slug) || null;
     }
-    
     const { data, error } = await supabase
       .from('projects')
       .select('*')
@@ -296,57 +349,52 @@ export const db = {
     return data;
   },
 
-  async saveProject(project: Partial<Project>): Promise<Project> {
+  async saveProject(p: Partial<Project> & { id?: string }): Promise<Project> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_projects') || '[]');
-      if (project.id) {
-        // Update
-        const idx = items.findIndex((p: Project) => p.id === project.id);
+      const items: Project[] = JSON.parse(localStorage.getItem('ak_projects') || '[]');
+      if (p.id) {
+        const idx = items.findIndex((item) => item.id === p.id);
         if (idx !== -1) {
-          items[idx] = { ...items[idx], ...project, updated_at: new Date().toISOString() };
+          items[idx] = { ...items[idx], ...p } as Project;
           localStorage.setItem('ak_projects', JSON.stringify(items));
           return items[idx];
         }
       }
-      // Create new
-      const newProj: Project = {
-        id: project.id || 'p_' + Math.random().toString(36).substr(2, 9),
-        title: project.title || 'Untitled Project',
-        slug: project.slug || 'untitled-' + Math.random().toString(36).substr(2, 5),
-        description: project.description || '',
-        category: project.category || 'Commercial',
-        client: project.client || '',
-        year: project.year || new Date().getFullYear().toString(),
-        cover_image: project.cover_image || '',
-        gallery_images: project.gallery_images || [],
-        video_url: project.video_url || '',
-        featured: project.featured || false,
-        published: project.published || false,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+      const newP: Project = {
+        id: 'p_' + Math.random().toString(36).substring(2, 9),
+        title: p.title || 'Untitled Project',
+        slug: p.slug || 'untitled-' + Date.now(),
+        description: p.description || '',
+        category: p.category || 'Videography',
+        client: p.client || 'Personal Work',
+        year: p.year || '2026',
+        cover_image: p.cover_image || '',
+        gallery_images: p.gallery_images || [],
+        video_url: p.video_url || '',
+        featured: p.featured ?? true,
+        published: p.published ?? true
       };
-      items.unshift(newProj);
+      items.unshift(newP);
       localStorage.setItem('ak_projects', JSON.stringify(items));
-      return newProj;
+      return newP;
     }
 
-    if (project.id && project.id.startsWith('p_') === false && project.id.length > 10) {
-      // Real database update
+    if (p.id && !p.id.startsWith('p_')) {
       const { data, error } = await supabase
         .from('projects')
-        .update(project)
-        .eq('id', project.id)
+        .update(p)
+        .eq('id', p.id)
         .select()
         .single();
       if (error) throw error;
       return data;
     } else {
-      // Real database insert
-      const cleanProj = { ...project };
-      delete cleanProj.id; // Let uuid trigger handle it
+      const cleanP = { ...p };
+      delete cleanP.id;
       const { data, error } = await supabase
         .from('projects')
-        .insert(cleanProj)
+        .insert(cleanP)
         .select()
         .single();
       if (error) throw error;
@@ -355,9 +403,10 @@ export const db = {
   },
 
   async deleteProject(id: string): Promise<void> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_projects') || '[]');
-      const filtered = items.filter((p: Project) => p.id !== id);
+      const items: Project[] = JSON.parse(localStorage.getItem('ak_projects') || '[]');
+      const filtered = items.filter((item) => item.id !== id);
       localStorage.setItem('ak_projects', JSON.stringify(filtered));
       return;
     }
@@ -365,10 +414,11 @@ export const db = {
     if (error) throw error;
   },
 
-  // --- SETTINGS (PROFILE & SERVICES) ---
+  // --- PROFILE ---
   async getProfileSettings(): Promise<ProfileSettings> {
+    initLocalDb();
     if (isMockMode) {
-      return JSON.parse(localStorage.getItem('ak_profile') || '{}');
+      return JSON.parse(localStorage.getItem('ak_profile') || JSON.stringify(MOCK_PROFILE));
     }
     const { data, error } = await supabase
       .from('settings')
@@ -380,6 +430,7 @@ export const db = {
   },
 
   async saveProfileSettings(value: ProfileSettings): Promise<void> {
+    initLocalDb();
     if (isMockMode) {
       localStorage.setItem('ak_profile', JSON.stringify(value));
       return;
@@ -391,9 +442,11 @@ export const db = {
     if (error) throw error;
   },
 
+  // --- SERVICES ---
   async getServices(): Promise<ServiceItem[]> {
+    initLocalDb();
     if (isMockMode) {
-      return JSON.parse(localStorage.getItem('ak_services') || '[]');
+      return JSON.parse(localStorage.getItem('ak_services') || JSON.stringify(MOCK_SERVICES));
     }
     const { data, error } = await supabase
       .from('settings')
@@ -405,6 +458,7 @@ export const db = {
   },
 
   async saveServices(value: ServiceItem[]): Promise<void> {
+    initLocalDb();
     if (isMockMode) {
       localStorage.setItem('ak_services', JSON.stringify(value));
       return;
@@ -418,30 +472,32 @@ export const db = {
 
   // --- TESTIMONIALS ---
   async getTestimonials(): Promise<Testimonial[]> {
+    initLocalDb();
     if (isMockMode) {
-      return JSON.parse(localStorage.getItem('ak_testimonials') || '[]');
+      return JSON.parse(localStorage.getItem('ak_testimonials') || JSON.stringify(MOCK_TESTIMONIALS));
     }
     const { data, error } = await supabase
       .from('testimonials')
       .select('*')
       .order('created_at', { ascending: true });
-    if (error) throw error;
+    if (error) return MOCK_TESTIMONIALS;
     return data || [];
   },
 
   async saveTestimonial(t: Partial<Testimonial>): Promise<Testimonial> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_testimonials') || '[]');
+      const items: Testimonial[] = JSON.parse(localStorage.getItem('ak_testimonials') || JSON.stringify(MOCK_TESTIMONIALS));
       if (t.id) {
-        const idx = items.findIndex((item: Testimonial) => item.id === t.id);
+        const idx = items.findIndex((item) => item.id === t.id);
         if (idx !== -1) {
-          items[idx] = { ...items[idx], ...t };
+          items[idx] = { ...items[idx], ...t } as Testimonial;
           localStorage.setItem('ak_testimonials', JSON.stringify(items));
           return items[idx];
         }
       }
       const newT: Testimonial = {
-        id: 't_' + Math.random().toString(36).substr(2, 9),
+        id: 't_' + Math.random().toString(36).substring(2, 9),
         name: t.name || 'Anonymous',
         role: t.role || '',
         company: t.company || '',
@@ -454,7 +510,7 @@ export const db = {
       return newT;
     }
 
-    if (t.id && t.id.startsWith('t_') === false) {
+    if (t.id && !t.id.startsWith('t_')) {
       const { data, error } = await supabase
         .from('testimonials')
         .update(t)
@@ -477,9 +533,10 @@ export const db = {
   },
 
   async deleteTestimonial(id: string): Promise<void> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_testimonials') || '[]');
-      const filtered = items.filter((t: Testimonial) => t.id !== id);
+      const items: Testimonial[] = JSON.parse(localStorage.getItem('ak_testimonials') || '[]');
+      const filtered = items.filter((t) => t.id !== id);
       localStorage.setItem('ak_testimonials', JSON.stringify(filtered));
       return;
     }
@@ -489,6 +546,7 @@ export const db = {
 
   // --- MESSAGES (CONTACT) ---
   async getMessages(): Promise<Message[]> {
+    initLocalDb();
     if (isMockMode) {
       return JSON.parse(localStorage.getItem('ak_messages') || '[]');
     }
@@ -496,16 +554,17 @@ export const db = {
       .from('messages')
       .select('*')
       .order('created_at', { ascending: false });
-    if (error) throw error;
+    if (error) return [];
     return data || [];
   },
 
   async sendMessage(m: Omit<Message, 'id' | 'read' | 'created_at'>): Promise<Message> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_messages') || '[]');
+      const items: Message[] = JSON.parse(localStorage.getItem('ak_messages') || '[]');
       const newM: Message = {
         ...m,
-        id: 'msg_' + Math.random().toString(36).substr(2, 9),
+        id: 'msg_' + Math.random().toString(36).substring(2, 9),
         read: false,
         created_at: new Date().toISOString()
       };
@@ -523,9 +582,10 @@ export const db = {
   },
 
   async markMessageRead(id: string, read = true): Promise<void> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_messages') || '[]');
-      const idx = items.findIndex((m: Message) => m.id === id);
+      const items: Message[] = JSON.parse(localStorage.getItem('ak_messages') || '[]');
+      const idx = items.findIndex((m) => m.id === id);
       if (idx !== -1) {
         items[idx].read = read;
         localStorage.setItem('ak_messages', JSON.stringify(items));
@@ -540,9 +600,10 @@ export const db = {
   },
 
   async deleteMessage(id: string): Promise<void> {
+    initLocalDb();
     if (isMockMode) {
-      const items = JSON.parse(localStorage.getItem('ak_messages') || '[]');
-      const filtered = items.filter((m: Message) => m.id !== id);
+      const items: Message[] = JSON.parse(localStorage.getItem('ak_messages') || '[]');
+      const filtered = items.filter((m) => m.id !== id);
       localStorage.setItem('ak_messages', JSON.stringify(filtered));
       return;
     }
@@ -552,21 +613,21 @@ export const db = {
 
   // --- CATEGORIES ---
   async getCategories(): Promise<Category[]> {
+    initLocalDb();
     if (isMockMode) {
-      return JSON.parse(localStorage.getItem('ak_categories') || '[]');
+      return JSON.parse(localStorage.getItem('ak_categories') || JSON.stringify(MOCK_CATEGORIES));
     }
     const { data, error } = await supabase
       .from('categories')
       .select('*')
       .order('name', { ascending: true });
-    if (error) throw error;
+    if (error) return MOCK_CATEGORIES;
     return data || [];
   },
 
   // --- MEDIA UPLOAD ---
   async uploadMedia(file: File, folder: string, onProgress?: (percent: number) => void): Promise<string> {
     if (isMockMode) {
-      // Simulate file upload progress
       if (onProgress) {
         onProgress(20);
         await new Promise((r) => setTimeout(r, 100));
@@ -576,16 +637,13 @@ export const db = {
         await new Promise((r) => setTimeout(r, 100));
         onProgress(100);
       }
-      // Create local object URL for instant visual feedback during development
       return URL.createObjectURL(file);
     }
 
-    // Supabase Storage Upload
     const fileExt = file.name.split('.').pop();
     const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
     const filePath = `${folder}/${fileName}`;
 
-    // Upload the file to the 'portfolio' bucket
     const { error } = await supabase.storage
       .from('portfolio')
       .upload(filePath, file, {
@@ -595,7 +653,6 @@ export const db = {
 
     if (error) throw error;
 
-    // Get public URL
     const { data } = supabase.storage
       .from('portfolio')
       .getPublicUrl(filePath);
@@ -603,3 +660,5 @@ export const db = {
     return data.publicUrl;
   }
 };
+
+export const localDb = db;

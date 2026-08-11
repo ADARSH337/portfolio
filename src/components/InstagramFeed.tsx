@@ -1,16 +1,16 @@
-﻿import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
-// Real photos from the user''s own collection, styled as an Instagram grid
+// Real Cloudinary CDN photos from the user's uploaded collection
 const INSTA_POSTS = [
-  { src: "/photos/img_4409.jpg",  caption: "Golden hour magic 🌅 #CineFrame #Sunset",           likes: 312, span: "tall"   },
-  { src: "/photos/85550.jpg",     caption: "Giant Wheel @ Numaish 4K 🎡 #Numaish #NightLife",   likes: 487, span: "wide"   },
-  { src: "/photos/img_3642.jpg",  caption: "Palm silhouette at dusk 🌴 #GoldenHour",            likes: 203, span: "normal" },
-  { src: "/photos/img_5136.jpg",  caption: "Nature frames 🌿 #CinematicFrames #AKCineFrame",    likes: 276, span: "normal" },
-  { src: "/photos/img_5140.jpg",  caption: "Numaish night lights ✨ #EventFilm #4K",            likes: 391, span: "tall"   },
-  { src: "/photos/63807.jpg",     caption: "Silhouette + Sunset = Art 🎞️ #VisualStory",        likes: 418, span: "normal" },
-  { src: "/photos/img_5751.jpg",  caption: "Motion in still frames 📸 #AKCineFrame",           likes: 229, span: "wide"   },
-  { src: "/photos/img_5321.jpg",  caption: "The light changes everything ☀️ #Photography",     likes: 345, span: "normal" },
-  { src: "/photos/img_4931.jpg",  caption: "Urban textures 🏙️ #StreetPhotography #India",      likes: 186, span: "normal" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429220/sun_1.jpg", caption: "Golden hour magic 🌅 #CineFrame #Sunset", likes: 312, span: "tall" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429223/gaintwheel.jpg", caption: "Giant Wheel @ Numaish 4K 🎡 #Numaish #NightLife", likes: 487, span: "wide" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/sky_6.jpg", caption: "Sky aesthetics ☁️ #GoldenHour", likes: 203, span: "normal" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/rainbow_1.jpg", caption: "Colors in the sky 🌈 #CinematicFrames #AKCineFrame", likes: 276, span: "normal" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428770/street_photo_7.jpg", caption: "Night tones & reflections ✨ #EventFilm #4K", likes: 391, span: "tall" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429210/moon_2.jpg", caption: "Moonlight silhouette 🌙 #VisualStory", likes: 418, span: "normal" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428753/bike_2.jpg", caption: "Motion in still frames 📸 #AKCineFrame", likes: 229, span: "wide" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429213/thunder_2.jpg", caption: "Electric skies ⚡ #Photography", likes: 345, span: "normal" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg", caption: "Urban textures 🏙️ #StreetPhotography #India", likes: 186, span: "normal" }
 ];
 
 const IG_URL = "https://www.instagram.com/ak.cineframe?igsh=MW0wcXp6MWFpbzd0&utm_source=qr";

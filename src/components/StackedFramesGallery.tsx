@@ -158,9 +158,23 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
               <div
                 key={project.id}
                 ref={(el) => { cardRefs.current[idx] = el; }}
-                onMouseEnter={handleMouseEnter}
+                onMouseEnter={(e) => {
+                  handleMouseEnter(e);
+                  const v = e.currentTarget.querySelector('video');
+                  if (v) {
+                    v.play().catch(() => {});
+                    v.style.opacity = '1';
+                  }
+                }}
                 onMouseMove={handleMouseMove}
-                onMouseLeave={(e) => handleMouseLeave(e, idx)}
+                onMouseLeave={(e) => {
+                  handleMouseLeave(e, idx);
+                  const v = e.currentTarget.querySelector('video');
+                  if (v) {
+                    v.pause();
+                    v.style.opacity = '0';
+                  }
+                }}
                 onClick={() => setSelectedProject(project)}
                 className="project-frame interactive-card"
                 style={{
@@ -212,7 +226,7 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                       muted
                       playsInline
                       loop
-                      preload="none"
+                      preload="auto"
                       style={{
                         width: '100%',
                         height: '100%',
@@ -222,23 +236,9 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                         left: 0,
                         zIndex: 2,
                         opacity: 0,
-                        transition: 'opacity 0.5s ease'
+                        transition: 'opacity 0.35s ease'
                       }}
                       className="card-video"
-                      onMouseEnter={(e) => {
-                        const v = e.currentTarget;
-                        v.play();
-                        v.style.opacity = '1';
-                        const img = v.previousElementSibling as HTMLElement;
-                        if (img) img.style.opacity = '0';
-                      }}
-                      onMouseLeave={(e) => {
-                        const v = e.currentTarget;
-                        v.pause();
-                        v.style.opacity = '0';
-                        const img = v.previousElementSibling as HTMLElement;
-                        if (img) img.style.opacity = '1';
-                      }}
                     />
                   )}
                   {/* Film badge for video projects */}
@@ -390,7 +390,9 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                     src={selectedProject.video_url}
                     controls
                     autoPlay
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    playsInline
+                    preload="auto"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }}
                   />
                 )}
               </div>

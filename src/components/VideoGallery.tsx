@@ -84,7 +84,7 @@ export const VideoGallery: React.FC<VideoGalleryProps> = ({ projects }) => {
 
   // Helper to detect if a URL is direct video file (MP4) vs embed
   const isDirectMp4 = (url: string) => {
-    return url.endsWith('.mp4') || url.includes('/videos/') || url.includes('.mov') || url.includes('.webm');
+    return url.endsWith('.mp4') || url.includes('/videos/') || url.includes('.mov') || url.includes('.webm') || url.includes('cloudinary.com');
   };
 
   return (
@@ -142,6 +142,7 @@ export const VideoGallery: React.FC<VideoGalleryProps> = ({ projects }) => {
                       muted
                       loop
                       playsInline
+                      preload="auto"
                       poster={proj.cover_image}
                       style={{
                         width: '100%',
@@ -314,7 +315,9 @@ export const VideoGallery: React.FC<VideoGalleryProps> = ({ projects }) => {
                 src={activeVideo}
                 controls
                 autoPlay
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                playsInline
+                preload="auto"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }}
               />
             )}
           </div>

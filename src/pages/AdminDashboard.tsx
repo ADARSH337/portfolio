@@ -179,7 +179,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
         const folder = compressed.type.startsWith('video/') ? 'portfolio/videography' : 'portfolio/photography';
         
-        const url = await db.uploadMedia(compressed, folder, (percent) => {
+        const url = await db.uploadMedia(compressed, folder, (percent: number) => {
           setUploadProgress((prev) => ({ ...prev, [fileId]: Math.min(100, 30 + percent * 0.7) }));
         });
 
