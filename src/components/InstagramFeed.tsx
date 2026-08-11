@@ -1,16 +1,19 @@
 import React, { useEffect, useRef } from "react";
 
-// Real Cloudinary CDN photos from the user's uploaded collection
+// Real Cloudinary CDN photos and video reels from the user's uploaded collection
 const INSTA_POSTS = [
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429220/sun_1.jpg", caption: "Golden hour magic 🌅 #CineFrame #Sunset", likes: 312, span: "tall" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429223/gaintwheel.jpg", caption: "Giant Wheel @ Numaish 4K 🎡 #Numaish #NightLife", likes: 487, span: "wide" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/sky_6.jpg", caption: "Sky aesthetics ☁️ #GoldenHour", likes: 203, span: "normal" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/rainbow_1.jpg", caption: "Colors in the sky 🌈 #CinematicFrames #AKCineFrame", likes: 276, span: "normal" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428770/street_photo_7.jpg", caption: "Night tones & reflections ✨ #EventFilm #4K", likes: 391, span: "tall" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429210/moon_2.jpg", caption: "Moonlight silhouette 🌙 #VisualStory", likes: 418, span: "normal" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428753/bike_2.jpg", caption: "Motion in still frames 📸 #AKCineFrame", likes: 229, span: "wide" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429213/thunder_2.jpg", caption: "Electric skies ⚡ #Photography", likes: 345, span: "normal" },
-  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg", caption: "Urban textures 🏙️ #StreetPhotography #India", likes: 186, span: "normal" }
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429220/sun_1.jpg", caption: "Golden hour magic 🌅 #CineFrame #Sunset", likes: 312, span: "tall", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429223/gaintwheel.jpg", video: "https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428533/NUMAISH_4K.mp4", caption: "Giant Wheel @ Numaish 4K 🎡 #Numaish #NightLife #4KFilm", likes: 487, span: "wide", type: "video" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/sky_6.jpg", caption: "Sky aesthetics ☁️ #GoldenHour #Clouds", likes: 203, span: "normal", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428751/rainbow_1.jpg", caption: "Double rainbow in the sky 🌈 #CinematicFrames #AKCineFrame", likes: 276, span: "normal", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429214/thunder_3.jpg", caption: "Monsoon electrical skies ⚡ #Lightning #NightShot", likes: 391, span: "tall", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786429375/game.jpg", video: "https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786429375/game.mp4", caption: "Shadow Beast Gaming Montage 🔥 #GamingReels #BeatSync", likes: 624, span: "normal", type: "video" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428753/bike_2.jpg", video: "https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428424/bike.mp4", caption: "Speed & Steel — Motorcycle Motion 🏍️ #AKCineFrame", likes: 450, span: "wide", type: "video" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429210/moon_2.jpg", caption: "Moonlight silhouette 🌙 #VisualStory #NightPhotography", likes: 418, span: "normal", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786428400/gym3.jpg", video: "https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428400/gym3.mp4", caption: "Discipline & Strength — Commercial Cut 💪 #FitnessFilm", likes: 532, span: "normal", type: "video" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429241/street_photo.jpg", caption: "Urban textures & architectural light 🏙️ #StreetPhotography", likes: 215, span: "normal", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786429225/sun_4.jpg", caption: "Sunset hues over the horizon 🌇 #GoldenHourFrames", likes: 368, span: "wide", type: "image" },
+  { src: "https://res.cloudinary.com/ma08zkgn/image/upload/q_auto,f_auto/v1786428758/camara_2.jpg", caption: "Behind the lens creating memories 📸 #PhotographyLife", likes: 298, span: "normal", type: "image" }
 ];
 
 const IG_URL = "https://www.instagram.com/ak.cineframe?igsh=MW0wcXp6MWFpbzd0&utm_source=qr";
@@ -91,8 +94,38 @@ export const InstagramFeed: React.FC = () => {
               rel="noopener noreferrer"
               className={`ig-card ig-span-${post.span} ig-animate`}
             >
-              <div className="ig-img-wrap">
-                <img src={post.src} alt={post.caption} loading="lazy" decoding="async" />
+              <div 
+                className="ig-img-wrap"
+                onMouseEnter={(e) => {
+                  const v = e.currentTarget.querySelector('video');
+                  if (v) v.play().catch(() => {});
+                }}
+                onMouseLeave={(e) => {
+                  const v = e.currentTarget.querySelector('video');
+                  if (v) v.pause();
+                }}
+              >
+                {post.type === "video" && post.video ? (
+                  <>
+                    <img src={post.src} alt={post.caption} className="ig-video-poster" loading="lazy" decoding="async" />
+                    <video 
+                      src={post.video} 
+                      muted 
+                      playsInline 
+                      loop 
+                      preload="none" 
+                      className="ig-video-element"
+                    />
+                    <div className="ig-reel-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="4" stroke="white" strokeWidth="2" fill="none"/>
+                        <path d="M10 8L16 12L10 16V8Z" fill="white"/>
+                      </svg>
+                    </div>
+                  </>
+                ) : (
+                  <img src={post.src} alt={post.caption} loading="lazy" decoding="async" />
+                )}
                 <div className="ig-overlay">
                   <div className="ig-overlay-inner">
                     <p className="ig-card-caption">{post.caption}</p>
@@ -184,6 +217,20 @@ export const InstagramFeed: React.FC = () => {
         .ig-img-wrap { position: absolute; inset: 0; }
         .ig-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
         .ig-card:hover .ig-img-wrap img { transform: scale(1.07); }
+        
+        .ig-video-element {
+          position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+          opacity: 0; transition: opacity 0.4s ease;
+        }
+        .ig-card:hover .ig-video-element { opacity: 1; }
+        .ig-reel-icon {
+          position: absolute; top: 12px; right: 12px;
+          background: rgba(0,0,0,0.5); padding: 4px; border-radius: 6px;
+          backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center;
+          opacity: 0.9; transition: opacity 0.3s ease;
+        }
+        .ig-card:hover .ig-reel-icon { opacity: 0; }
+        
         .ig-overlay {
           position: absolute; inset: 0;
           background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
