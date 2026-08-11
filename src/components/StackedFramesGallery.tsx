@@ -231,7 +231,7 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                       muted
                       playsInline
                       loop
-                      preload="auto"
+                      preload="none"
                       style={{
                         width: '100%',
                         height: '100%',
@@ -508,7 +508,7 @@ export const StackedFramesGallery: React.FC<StackedFramesGalleryProps> = ({ proj
                           muted
                           playsInline
                           loop
-                          preload="auto"
+                          preload="none"
                           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                         />
                         <div style={{

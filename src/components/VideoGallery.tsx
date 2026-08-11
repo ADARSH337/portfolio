@@ -142,7 +142,7 @@ export const VideoGallery: React.FC<VideoGalleryProps> = ({ projects }) => {
                       muted
                       loop
                       playsInline
-                      preload="auto"
+                      preload="none"
                       poster={proj.cover_image}
                       style={{
                         width: '100%',
