@@ -424,9 +424,9 @@ const MOCK_PROJECTS: Project[] = [
   },
   {
     "id": "p25",
-    "title": "Speed & Steel — Motorcycle Motion",
-    "slug": "speed-steel-motorcycle-motion",
-    "description": "Sleek motorcycle cinematography featuring chrome reflections, engine rumble audio, and high-speed tracking shots.",
+    "title": "Cinematic Bike Edit",
+    "slug": "cinematic-bike-edit",
+    "description": "High-octane motorcycle visual edit featuring speed ramping and heavy color grading.",
     "category": "Commercial",
     "client": "MotoCraft Customs",
     "year": "2026",
@@ -734,7 +734,7 @@ const MOCK_CATEGORIES: Category[] = [
 ];
 
 // Helper to initialize LocalStorage db — bump DB_VERSION to force fresh seed
-const DB_VERSION = 'v21-uncompressed-cloudinary';
+const DB_VERSION = 'v22-accurate-titles';
 const initLocalDb = () => {
   // Wipe stale seed if version has changed
   if (localStorage.getItem('ak_db_version') !== DB_VERSION) {
