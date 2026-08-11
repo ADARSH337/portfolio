@@ -255,20 +255,6 @@ const MOCK_PROJECTS: Project[] = [
     "published": true
   },
   {
-    "id": "p13",
-    "title": "Functional Movement Promo",
-    "slug": "functional-movement-promo",
-    "description": "Dynamic commercial edit focusing on agility, calisthenics, and bodyweight control.",
-    "category": "Commercial",
-    "client": "CrossFit Studio",
-    "year": "2026",
-    "cover_image": "https://res.cloudinary.com/ma08zkgn/video/upload/so_1,q_auto,f_auto/v1786428456/gym5.jpg",
-    "gallery_images": [],
-    "video_url": "https://res.cloudinary.com/ma08zkgn/video/upload/q_auto,f_auto/v1786428456/gym5.mov",
-    "featured": false,
-    "published": true
-  },
-  {
     "id": "p14",
     "title": "High-Performance Training Cut",
     "slug": "high-performance-training-cut",
@@ -734,7 +720,7 @@ const MOCK_CATEGORIES: Category[] = [
 ];
 
 // Helper to initialize LocalStorage db — bump DB_VERSION to force fresh seed
-const DB_VERSION = 'v22-accurate-titles';
+const DB_VERSION = 'v23-remove-promo';
 const initLocalDb = () => {
   // Wipe stale seed if version has changed
   if (localStorage.getItem('ak_db_version') !== DB_VERSION) {
